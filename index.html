@@ -8,6 +8,19 @@
 </head>
 <body>
     <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">📚 Quiz</div>
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link active" data-section="home">Startseite</a></li>
+                    <li><a href="#" class="nav-link" data-section="learning">Lernen</a></li>
+                    <li><a href="#" class="nav-link" data-section="quiz">Quiz</a></li>
+                    <li><a href="#" class="nav-link" data-section="leaderboard">Leaderboard</a></li>
+                </ul>
+            </div>
+        </nav>
+
         <!-- Header -->
         <header class="header">
             <h1>📚 Deutsches Grammatik-Quiz</h1>
@@ -18,16 +31,16 @@
         <div id="start-screen" class="screen active">
             <div class="start-content">
                 <h2>Willkommen zum Quiz!</h2>
-                <p>Teste dein Wissen über deutsche Grammatik</p>
+                <p>Teste dein Wissen über deutsche Wortarten!</p>
                 
                 <div class="quiz-info">
                     <div class="info-card">
                         <span class="icon">❓</span>
-                        <span>50 Fragen</span>
+                        <span>200 Fragen</span>
                     </div>
                     <div class="info-card">
                         <span class="icon">⏱️</span>
-                        <span>Unbegrenzte Zeit</span>
+                        <span>45 Minuten Zeitlimit</span>
                     </div>
                     <div class="info-card">
                         <span class="icon">⭐</span>
@@ -42,7 +55,35 @@
                     </label>
                     <label>
                         <input type="radio" name="difficulty" value="sorted">
-                        <span class="option-label">Sortiert (Nomen → Adjektive → Verben)</span>
+                        <span class="option-label">Sortiert</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="conjugation">
+                        <span class="option-label">Konjugieren von Verben</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="comparison">
+                        <span class="option-label">Adjektive Steigern</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="cases">
+                        <span class="option-label">Fälle Erraten</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="prepositions">
+                        <span class="option-label">Präpositionen</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="fill-in-the-blank">
+                        <span class="option-label">Lückentext</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="tenses">
+                        <span class="option-label">Zeitformen</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="reading">
+                        <span class="option-label">Leseverstehen</span>
                     </label>
                 </div>
 
@@ -57,7 +98,12 @@
                     <div class="progress-bar">
                         <div id="progress-fill" class="progress-fill"></div>
                     </div>
-                    <span id="progress-text">Frage 1 von 50</span>
+                    <span id="progress-text">Frage 1 von 40</span>
+                </div>
+
+                <div class="timer-display">
+                    <span class="timer-label">Verbleibende Zeit:</span>
+                    <span id="timer-text" class="timer-value">45:00</span>
                 </div>
 
                 <div class="score-display">
@@ -82,11 +128,13 @@
             <div class="results-content">
                 <div class="result-badge">
                     <span id="final-score" class="final-score">0</span>
-                    <span class="badge-label">/ 50</span>
+                    <span id="total-score" class="badge-label">/ 40</span>
                 </div>
 
                 <h2 id="result-title" class="result-title">Gratuliere!</h2>
                 <p id="result-message" class="result-message"></p>
+
+                <div id="result-link" class="result-link" style="margin-top: 16px; font-size: 14px;"></div>
 
                 <div class="result-details">
                     <div class="detail-item">
@@ -120,6 +168,31 @@
             <div id="review-content" class="review-content"></div>
 
             <button class="btn btn-primary" onclick="restartQuiz()">Nochmal spielen</button>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboard-screen" class="screen">
+            <div class="leaderboard-header">
+                <h2>🏆 Leaderboard</h2>
+                <button class="btn btn-close" onclick="backToHome()">✕</button>
+            </div>
+
+            <div class="leaderboard-content">
+                <div class="leaderboard-tabs">
+                    <button class="tab-btn active" onclick="showLeaderboardTab('all')">Alle Zeiten</button>
+                    <button class="tab-btn" onclick="showLeaderboardTab('today')">Heute</button>
+                    <button class="tab-btn" onclick="showLeaderboardTab('week')">Diese Woche</button>
+                </div>
+
+                <div id="leaderboard-list" class="leaderboard-list">
+                    <!-- Leaderboard entries will be populated by JavaScript -->
+                </div>
+
+                <div class="leaderboard-actions">
+                    <button class="btn btn-secondary" onclick="clearLeaderboard()">Leaderboard löschen</button>
+                    <button class="btn btn-primary" onclick="backToHome()">Zurück zur Startseite</button>
+                </div>
+            </div>
         </div>
     </div>
 

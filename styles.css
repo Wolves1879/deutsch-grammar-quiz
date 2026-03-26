@@ -5,7 +5,7 @@
 }
 
 :root {
-    --primary-color: #6366f1;
+    --primary-color: #ed6700;
     --primary-dark: #4f46e5;
     --success-color: #10b981;
     --danger-color: #ef4444;
@@ -15,6 +15,8 @@
     --text-dark: #1f2937;
     --text-light: #6b7280;
     --border-color: #e5e7eb;
+    --dark-color: #2c3e50;
+    --secondary-color: #f39c12;
 }
 
 html {
@@ -23,7 +25,7 @@ html {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #2c6de4 0%, #13c67f 100%);
     min-height: 100vh;
     color: var(--text-dark);
     padding: 20px;
@@ -32,6 +34,55 @@ body {
 .container {
     max-width: 800px;
     margin: 0 auto;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--dark-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--secondary-color);
 }
 
 /* Header */
@@ -70,12 +121,14 @@ body {
 /* Start Screen */
 .start-content {
     text-align: center;
+    color: #dbeafe;
 }
 
 .start-content h2 {
-    font-size: 2rem;
+    font-size: 2.25rem;
     margin-bottom: 15px;
-    color: var(--primary-color);
+    color: var(--secondary-color);
+    text-shadow: 0 2px 8px rgba(34, 211, 238, 0.40);
 }
 
 .start-content p {
@@ -542,6 +595,144 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Leaderboard */
+.leaderboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.leaderboard-header h2 {
+    color: var(--text-dark);
+}
+
+.leaderboard-content {
+    animation: fadeIn 0.5s ease;
+}
+
+.leaderboard-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background: var(--light-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+}
+
+.tab-btn:hover:not(.active) {
+    border-color: var(--primary-color);
+}
+
+.leaderboard-list {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.leaderboard-entry {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.3s;
+}
+
+.leaderboard-entry:last-child {
+    border-bottom: none;
+}
+
+.leaderboard-entry:hover {
+    background: var(--light-bg);
+}
+
+.leaderboard-entry.current-user {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+}
+
+.leaderboard-entry.current-user:hover {
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
+}
+
+.rank {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    min-width: 50px;
+    text-align: center;
+}
+
+.rank-medal {
+    font-size: 1.8rem;
+}
+
+.rank-1 .rank-medal { color: #ffd700; }
+.rank-2 .rank-medal { color: #c0c0c0; }
+.rank-3 .rank-medal { color: #cd7f32; }
+
+.player-info {
+    flex: 1;
+    margin-left: 15px;
+}
+
+.player-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.player-stats {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.score {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--success-color);
+    min-width: 60px;
+    text-align: right;
+}
+
+.leaderboard-entry.current-user .score {
+    color: var(--white);
+}
+
+.leaderboard-entry.current-user .player-stats {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.no-entries {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.leaderboard-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
 }
 
 /* Responsive Design */
