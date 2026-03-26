@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsches Grammatik-Quiz - Nomen, Adjektive, Verben</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📚 Deutsches Grammatik-Quiz</h1>
+            <p>Erkenne Nomen, Adjektive und Verben!</p>
+        </header>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div class="start-content">
+                <h2>Willkommen zum Quiz!</h2>
+                <p>Teste dein Wissen über deutsche Grammatik</p>
+                
+                <div class="quiz-info">
+                    <div class="info-card">
+                        <span class="icon">❓</span>
+                        <span>50 Fragen</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="icon">⏱️</span>
+                        <span>Unbegrenzte Zeit</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="icon">⭐</span>
+                        <span>1 Punkt pro Antwort</span>
+                    </div>
+                </div>
+
+                <div class="difficulty-selection">
+                    <label>
+                        <input type="radio" name="difficulty" value="mixed" checked>
+                        <span class="option-label">Alle durcheinander</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="difficulty" value="sorted">
+                        <span class="option-label">Sortiert (Nomen → Adjektive → Verben)</span>
+                    </label>
+                </div>
+
+                <button class="btn btn-large" onclick="startQuiz()">Quiz starten</button>
+            </div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                    <span id="progress-text">Frage 1 von 50</span>
+                </div>
+
+                <div class="score-display">
+                    <span class="score-label">Punkte:</span>
+                    <span id="score" class="score-value">0</span>
+                </div>
+            </div>
+
+            <div class="quiz-content">
+                <h2 id="question" class="question"></h2>
+
+                <div id="options" class="options"></div>
+
+                <button class="btn btn-next" id="next-btn" onclick="nextQuestion()" disabled>
+                    Nächste Frage →
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="results-content">
+                <div class="result-badge">
+                    <span id="final-score" class="final-score">0</span>
+                    <span class="badge-label">/ 50</span>
+                </div>
+
+                <h2 id="result-title" class="result-title">Gratuliere!</h2>
+                <p id="result-message" class="result-message"></p>
+
+                <div class="result-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Richtig beantwortet:</span>
+                        <span id="correct-count" class="detail-value">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Genauigkeit:</span>
+                        <span id="accuracy" class="detail-value">0%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Falsche Antworten:</span>
+                        <span id="wrong-count" class="detail-value">0</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="showResults()">Ergebnisse ansehen</button>
+                    <button class="btn btn-secondary" onclick="restartQuiz()">Nochmal spielen</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Review Screen -->
+        <div id="review-screen" class="screen">
+            <div class="review-header">
+                <h2>Ergebnisübersicht</h2>
+                <button class="btn btn-close" onclick="backToResults()">✕</button>
+            </div>
+
+            <div id="review-content" class="review-content"></div>
+
+            <button class="btn btn-primary" onclick="restartQuiz()">Nochmal spielen</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
